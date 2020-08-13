@@ -1,16 +1,13 @@
-DELETE FROM movie WHERE id = 1001;
-DELETE FROM movie WHERE id = 1002;
-DELETE FROM movie WHERE id = 1003;
-DELETE FROM movie WHERE id = 1004;
+DELETE FROM company WHERE document = 'first_document';
+DELETE FROM company WHERE document = 'second_document';
+DELETE FROM company WHERE document = 'document';
 
-INSERT INTO movie (id, title)
-VALUES ( 1001, 'Os Vingadores: Guerra Infinita');
 
-INSERT INTO movie (id, title)
-VALUES ( 1002, 'De Pernas pro Ar');
+INSERT INTO company (document, fantasy_name, company_name)
+VALUES ( 'first_document', 'First Fantasy Name', 'First Company Name');
 
-INSERT INTO movie (id, title)
-VALUES ( 1003, 'Warcraft');
+INSERT INTO company (document, fantasy_name, company_name)
+VALUES ( 'second_document', 'Second Fantasy Name', 'Second Company Name');
 
-INSERT INTO movie (id, title)
-VALUES ( 1004, 'Guerra do mediterrâneo');
+INSERT INTO company (document, fantasy_name, company_name)
+VALUES ( 'document', 'Fantasy Name', 'Company Name');
