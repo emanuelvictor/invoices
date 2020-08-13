@@ -8,10 +8,10 @@
         <version>2.1.7.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.texoit</groupId>
-    <artifactId>movies</artifactId>
+    <groupId>solutions.vcx</groupId>
+    <artifactId>invoices</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>movies</name>
+    <name>invoices</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
