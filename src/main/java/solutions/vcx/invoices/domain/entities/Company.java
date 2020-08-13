@@ -79,7 +79,7 @@ public class Company {
             throw new InvalidDocumentException();
         }
 
-        return documento.replaceAll(Pattern.quote("."), "").replaceAll(Pattern.quote("/"), "");
+        return documento.replaceAll(Pattern.quote("."), "").replaceAll(Pattern.quote("/"), "").replaceAll(Pattern.quote("-"), "").replaceAll(Pattern.quote(" "), "");
     }
 
     /**
