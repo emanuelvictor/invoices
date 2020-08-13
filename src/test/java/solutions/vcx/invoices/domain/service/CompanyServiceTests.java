@@ -1,4 +1,4 @@
-package solutions.vcx.invoices.domain.repository;//package solutions.vcx.invoices.domain.repository;
+package solutions.vcx.invoices.domain.service;//package solutions.vcx.invoices.domain.service;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -6,26 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.jdbc.Sql;
 import solutions.vcx.invoices.domain.AbstractIntegrationTests;
 import solutions.vcx.invoices.domain.entities.Company;
 
-import java.util.List;
-
-public class CompanyRepositoryTests extends AbstractIntegrationTests {
+public class CompanyServiceTests extends AbstractIntegrationTests {
 
     /**
      *
      */
     @Autowired
-    private ICompanyRepository companyRepository;
+    private CompanyService companyService;
 
     /**
      *
      */
     @Test(expected = org.springframework.orm.jpa.JpaSystemException.class)
     public void saveCompanyMustFail() {
-        this.companyRepository.save(new Company());
+        this.companyService.save(new Company());
     }
 
     /**
@@ -37,7 +36,7 @@ public class CompanyRepositoryTests extends AbstractIntegrationTests {
         final String fantasyName = "Fantasy Name";
         final String document = "documentt";
         final Company company = new Company(document, fantasyName, companyName);
-        this.companyRepository.save(company);
+        this.companyService.save(company);
     }
 
     /**
@@ -49,7 +48,7 @@ public class CompanyRepositoryTests extends AbstractIntegrationTests {
         final String fantasyName = "Fantasy Name";
         final String document = "document";
         final Company company = new Company(document, fantasyName, companyName);
-        this.companyRepository.save(company);
+        this.companyService.save(company);
 
         Assert.assertNotNull(company);
         Assert.assertEquals(company.getCompanyName(), companyName);
@@ -64,13 +63,13 @@ public class CompanyRepositoryTests extends AbstractIntegrationTests {
     @Sql({"/dataset/companies.sql"})
     public void updateCompanyMustPass() {
 
-        final Company originalCompany = this.companyRepository.findById("first_document").orElseThrow();
+        final Company originalCompany = this.companyService.findById("first_document").orElseThrow();
 
         final String companyName = "New Company Name";
         final String fantasyName = "New Fantasy Name";
         final String document = "first_document";
         final Company newCompany = new Company(document, fantasyName, companyName);
-        this.companyRepository.save(newCompany);
+        this.companyService.save(newCompany);
 
 
         Assert.assertNotNull(newCompany);
@@ -89,7 +88,7 @@ public class CompanyRepositoryTests extends AbstractIntegrationTests {
         final String fantasyName = "Second Fantasy Name";
         final String document = "first_document";
         final Company company = new Company(document, fantasyName, companyName);
-        this.companyRepository.save(company);
+        this.companyService.save(company);
     }
 
     /**
@@ -102,7 +101,7 @@ public class CompanyRepositoryTests extends AbstractIntegrationTests {
         final String fantasyName = "First Fantasy Name";
         final String document = "third_document";
         final Company company = new Company(document, fantasyName, companyName);
-        this.companyRepository.save(company);
+        this.companyService.save(company);
     }
 
     /**
@@ -111,7 +110,7 @@ public class CompanyRepositoryTests extends AbstractIntegrationTests {
     @Test
     @Sql({"/dataset/companies.sql"})
     public void findCompanyByIdMustPass() {
-        final Company company = this.companyRepository.findById("first_document").orElseThrow();
+        final Company company = this.companyService.findById("first_document").orElseThrow();
 
         Assert.assertNotNull(company);
         Assert.assertNotNull(company.getDocument());
@@ -127,45 +126,13 @@ public class CompanyRepositoryTests extends AbstractIntegrationTests {
      */
     @Test
     @Sql({"/dataset/companies.sql"})
-    public void listCompaniesByFantasyNameContainingMustReturn2() {
-        final Page<Company> pageOfcompanies = this.companyRepository.findAllByFantasyNameContaining("Fantasy", null);
-
-        Assert.assertNotNull(pageOfcompanies);
-        Assert.assertEquals(2, pageOfcompanies.getTotalElements());
-    }
-
-    /**
-     *
-     */
-    @Test
-    @Sql({"/dataset/companies.sql"})
-    public void listCompaniesByFantasyNameContainingMustReturn1() {
-        final Page<Company> companies = this.companyRepository.findAllByFantasyNameContaining("First", null);
-
-        Assert.assertNotNull(companies);
-        Assert.assertEquals(1, companies.getTotalElements());
-    }
-
-    @Test
-    @Sql({"/dataset/companies.sql"})
-    public void listCompaniesByFantasyNameContainingMustReturn0() {
-        final Page<Company> companies = this.companyRepository.findAllByFantasyNameContaining("must return zero", null);
-
-        Assert.assertNotNull(companies);
-        Assert.assertEquals(0, companies.getTotalElements());
-    }
-
-    /**
-     *
-     */
-    @Test
-    @Sql({"/dataset/companies.sql"})
     public void listCompaniesMustReturnAll() {
-        final List<Company> companies = this.companyRepository.findAll();
+        final Page<Company> companies = this.companyService.findAll(PageRequest.of(0, 1000));
 
         Assert.assertNotNull(companies);
-        Assert.assertEquals(3, companies.size());
+        Assert.assertEquals(3, companies.getTotalElements());
     }
+
 
     /**
      *
@@ -173,7 +140,7 @@ public class CompanyRepositoryTests extends AbstractIntegrationTests {
     @Test(expected = EmptyResultDataAccessException.class)
     @Sql({"/dataset/companies.sql"})
     public void removeCompanyByIdMustFail() {
-        this.companyRepository.deleteById("123456");
+        this.companyService.deleteById("123456");
     }
 
     /**
@@ -182,10 +149,10 @@ public class CompanyRepositoryTests extends AbstractIntegrationTests {
     @Test
     @Sql({"/dataset/companies.sql"})
     public void removeCompanyByIdMustPass() {
-        this.companyRepository.deleteById("document");
+        this.companyService.deleteById("document");
 
-        final List<Company> companies = this.companyRepository.findAll();
+        final Page<Company> companies = this.companyService.findAll(PageRequest.of(0, 1000));
         Assert.assertNotNull(companies);
-        Assert.assertEquals(2, companies.size());
+        Assert.assertEquals(2, companies.getTotalElements());
     }
 }

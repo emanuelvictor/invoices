@@ -10,4 +10,4 @@ INSERT INTO company (document, fantasy_name, company_name)
 VALUES ( 'second_document', 'Second Fantasy Name', 'Second Company Name');
 
 INSERT INTO company (document, fantasy_name, company_name)
-VALUES ( 'document', 'Fantasy Name', 'Company Name');
+VALUES ( 'document', 'Name', 'Company Name');
