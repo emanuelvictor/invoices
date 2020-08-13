@@ -7,7 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.test.context.jdbc.Sql;
-import solutions.vcx.invoices.domain.AbstractIntegrationTests;
+import solutions.vcx.invoices.AbstractIntegrationTests;
 import solutions.vcx.invoices.domain.entities.Company;
 
 import java.util.List;

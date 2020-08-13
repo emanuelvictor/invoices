@@ -1,4 +1,4 @@
-package solutions.vcx.invoices.domain;
+package solutions.vcx.invoices;
 
 import org.junit.FixMethodOrder;
 import org.junit.runner.RunWith;
@@ -32,7 +32,7 @@ public abstract class AbstractIntegrationTests {
     private WebApplicationContext webApplicationContext;
 
     /**
-     *
+     * Configure the web application to receive the rest requests
      */
     protected void setUp() {
         mvc = webAppContextSetup(webApplicationContext).build();

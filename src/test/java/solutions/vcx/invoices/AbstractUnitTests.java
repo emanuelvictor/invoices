@@ -1,4 +1,4 @@
-package solutions.vcx.invoices.domain;
+package solutions.vcx.invoices;
 
 import solutions.vcx.invoices.application.i18n.ResourceBundleMessageSource;
 

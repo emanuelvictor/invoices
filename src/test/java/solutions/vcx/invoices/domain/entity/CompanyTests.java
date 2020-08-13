@@ -5,7 +5,7 @@ import org.junit.Test;
 import solutions.vcx.invoices.application.exceptions.DocumentIsCpfException;
 import solutions.vcx.invoices.application.exceptions.InvalidCnpjException;
 import solutions.vcx.invoices.application.exceptions.InvalidDocumentException;
-import solutions.vcx.invoices.domain.AbstractUnitTests;
+import solutions.vcx.invoices.AbstractUnitTests;
 import solutions.vcx.invoices.domain.entities.Company;
 
 public class CompanyTests extends AbstractUnitTests {
