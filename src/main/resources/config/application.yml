@@ -1,0 +1,23 @@
+#Configuração destinada ao ambiente de desenvolvimento, os demais perfis hedarão deste
+spring:
+
+  #DATA SOURCE
+  datasource:
+    hikari.pool-name: ${spring.application.name}
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.h2.Driver
+    hikari.maximum-pool-size: 3
+    url: jdbc:h2:mem:invoices
+    username: invoices
+    password: invoices
+
+  #JPA
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+      naming:
+        implicit-strategy: solutions.vcx.invoices.infrastructure.hibernate.constraint.ConstraintsImplicitNamingStrategy
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate.dialect: org.hibernate.dialect.H2Dialect

@@ -47,7 +47,7 @@
 //     *
 //     */
 //    @Test(expected = DataIntegrityViolationException.class)
-//    @Sql({"/dataset/movies.sql"})
+//    @Sql({"/dataset/companies.sql"})
 //    public void saveRepeatedMovieMustPass() {
 //        final String title = "Warcraft";
 //        final Company movie = new Company(title);
@@ -58,7 +58,7 @@
 //     *
 //     */
 //    @Test
-//    @Sql({"/dataset/movies.sql"})
+//    @Sql({"/dataset/companies.sql"})
 //    public void findMovieByIdMustPass() {
 //        final Company movie = this.movieRepository.findById(1003L).orElseThrow();
 //
@@ -71,7 +71,7 @@
 //     *
 //     */
 //    @Test
-//    @Sql({"/dataset/movies.sql"})
+//    @Sql({"/dataset/companies.sql"})
 //    public void listMoviesByTitleMustReturn2() {
 //        final Page<Company> pageOfMovies = this.movieRepository.findAllByTitleContaining("Guerra", null);
 //
@@ -83,7 +83,7 @@
 //     *
 //     */
 //    @Test
-//    @Sql({"/dataset/movies.sql"})
+//    @Sql({"/dataset/companies.sql"})
 //    public void listMoviesByTitleMustReturn1() {
 //        final Page<Company> movies = this.movieRepository.findAllByTitleContaining("mediterrâneo", null);
 //
@@ -95,7 +95,7 @@
 //     *
 //     */
 //    @Test
-//    @Sql({"/dataset/movies.sql"})
+//    @Sql({"/dataset/companies.sql"})
 //    public void listMoviesMustReturnAll() {
 //        final List<Company> movies = this.movieRepository.findAll();
 //
